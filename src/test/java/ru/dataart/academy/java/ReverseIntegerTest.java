@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ReverseIntegerTest {
     @Test
-    public void test(){
+    public void test() {
         ReverseInteger reverseInt = new ReverseInteger();
         assert(reverseInt.reverse(123) == 321);
         assert(reverseInt.reverse(-123) == -321);
