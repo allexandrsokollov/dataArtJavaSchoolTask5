@@ -1,6 +1,8 @@
 package ru.dataart.academy.java;
 
 public class ReverseInteger {
+    char[] INT_MAX_VALUE_IN_CHAR = ("" + Integer.MAX_VALUE).toCharArray();
+
     /**
      * @param inputNumber - any integer value
      * @return - inputNumber in reversed order
@@ -13,7 +15,7 @@ public class ReverseInteger {
      */
     public int reverse(int inputNumber)  {
         char[] number = ("" + inputNumber).toCharArray();
-        int toReturn = 0;
+        int toReturn ;
 
         if(number.length <= 1) {
             toReturn = Integer.parseInt(new String(number));
@@ -32,35 +34,36 @@ public class ReverseInteger {
         }
 
 
-        toReturn = charArrayToInt(number);
 
 
 
-        return toReturn;
-    }
-
-    private static int charArrayToInt(char[] chars) throws ValueOutOfIntegerException {
-        char[] INT_MAX_VALUE_IN_CHAR = ("" + Integer.MAX_VALUE).toCharArray();
-
-        if ((chars.length < 10) || (chars.length == 10 && chars[0] == '-')) {
-            return Integer.parseInt(new String(chars));
-        } else if (chars.length > 10 && chars[0] != '-') {
-            throw new ValueOutOfIntegerException("value is more than Integer max value");
+        if ((number.length < 10) || (number.length == 10 && number[0] == '-')) {
+            return Integer.parseInt(new String(number));
+        } else if (number.length > 10 && number[0] != '-') {
+            try {
+                throw new ValueOutOfIntegerException("value is more than Integer max value");
+            } catch (ValueOutOfIntegerException e) {
+                System.out.println(e.getMessage());
+            }
         } else {
-            for (int i = 0, j = 0; i < chars.length; i++) {
-                if (chars[i] == '-') {
+            for (int i = 0, j = 0; i < number.length; i++) {
+                if (number[i] == '-') {
                     continue;
                 }
 
-                if (chars[i] > INT_MAX_VALUE_IN_CHAR[j]) {
-                    throw new ValueOutOfIntegerException("value is more than Integer max value");
+                if (number[i] > INT_MAX_VALUE_IN_CHAR[j]) {
+                    try {
+                        throw new ValueOutOfIntegerException("value is more than Integer max value");
+                    } catch (ValueOutOfIntegerException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
                 j++;
             }
-            return Integer.parseInt(new String(chars));
 
         }
-
-
+        return Integer.parseInt(new String(number));
     }
+
+
 }
