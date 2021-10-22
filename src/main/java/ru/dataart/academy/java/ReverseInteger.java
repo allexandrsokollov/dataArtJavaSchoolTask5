@@ -33,30 +33,23 @@ public class ReverseInteger {
             number[j] = tmp;
         }
 
-
-
-
-
         if ((number.length < 10) || (number.length == 10 && number[0] == '-')) {
             return Integer.parseInt(new String(number));
+
         } else if (number.length > 10 && number[0] != '-') {
-            try {
-                throw new ValueOutOfIntegerException("value is more than Integer max value");
-            } catch (ValueOutOfIntegerException e) {
-                System.out.println(e.getMessage());
-            }
+            throw new ValueOutOfIntegerException("value is more than Integer max value");
+
         } else {
+
             for (int i = 0, j = 0; i < number.length; i++) {
                 if (number[i] == '-') {
                     continue;
+
                 }
 
                 if (number[i] > INT_MAX_VALUE_IN_CHAR[j]) {
-                    try {
-                        throw new ValueOutOfIntegerException("value is more than Integer max value");
-                    } catch (ValueOutOfIntegerException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    throw new ValueOutOfIntegerException("value is more than Integer max value");
+
                 }
                 j++;
             }
